@@ -1,0 +1,12 @@
+Repository Link:
+https://github.com/TashawnD/GitHubEventData-Project_2
+
+This repository contains the following project documentation:
+
+Gold Layer ERD
+Silver Layer ERD
+Retrospective Document
+Solution Design Document
+Analysis Notebook
+Bronze → Silver Notebook
+Silver → Gold Notebook

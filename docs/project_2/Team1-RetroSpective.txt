@@ -1,0 +1,62 @@
+Is there anything your team did (technically, operationally, or otherwise), that you all are especially proud of?  
+ex. worked well together, split up work evenly, a certain computing step, etc 
+
+The biggest thing our team was able to demonstrate was our ability to work together extremely well. Communication between team members was strong, and we clearly understood what needed to be done and how our individual contributions fit into the overall solution. For example, we collaboratively worked on a single table to understand the workflow, and once that foundation was established, we used a divide and conquer approach to tackle our respective portions of the project. This showed our ability to break down complex problems into something manageable. 
+
+
+Is there anything your team did that slowed down your progress or didn't add value to the end result? 
+
+We included a lot of unneeded data in our original silver layer ERD that we later removed. We decided to change this up by tailoring our data to Sparrow Analytics request for aggregations based on event data. 
+
+
+Was your initial EDA thorough enough, or did we discover surprises later that we should have caught earlier? 
+
+We spent a lot of time designing our bronze to silver ERD that caused us to go through our data quite a bit resulting in us getting familiar with all the data that we had available to us so when we implemented it we exactly where to go to get the data and where we wanted to store it 
+
+
+Did your Solution Design Document you crafted during planning match the reality of your solution? 
+
+We did a pretty good job of following what we had in our solution design document although we had to make some minor changes for things like the size of our partitions due to how we implemented it in the code causing the file sized to be less than 128MB but overall we did our best to follow what we set out to do inside of the document 
+
+
+What "unique" transformation(s) did your team do in your Bronze -> Silver transformations?  
+Any cleaning outside of handling nulls, flattening nested JSON structures, & extracting fields from payload?
+
+We broke up the event data into the individual event types so that the data would be divided up cleanly from the nested JSON data it originates from. We also cached the dataframe for the JSON data we read in so that we could reduce the time and computational power to keep reading it into the pipeline  
+
+ 
+Are you happy with the way your partitions turned out in each layer? 
+
+No, while we had the right idea for how they should be structured we did not manage to get the data to be stored in partitions of 128MB, this could have been due to the way we were reading in the data we were doing it in small batches of about 2 weeks at a time and then storing it after the cleaning/transformation process. The data amount of data we were reading in most likely wasn’t a large enough size to reach the 128MB file size so we most likely would need to wait until we have more data pulled in before storing it to ensure we get to the correct partition sizes. 
+
+
+If you were given 2 more additional weeks on this, what would be your next steps (if any)? 
+
+-Our next steps would be ensuring the pipeline works flawlessly with every year of GitHub data, including current data (rather than just tailoring it to 2015 events)
+-Breakdown the events by language (based on the commit messages) 
+
+ 
+Alternatively, If you were to redo this project, is there anything you would have changed? 
+
+We would change up the logic to ensure the pipeline stores 128MB partitions 
+
+ 
+What were the biggest blockers you found yourself facing? What was the biggest challenge you overcame? 
+
+The biggest challenge for our team was designing the silver layer. We spent an excessive amount of time trying to get it right, which resulted in data tables that were ultimately unnecessary or could have been consolidated into other tables. 
+
+ 
+What's one thing each team member learned that they didn't know two weeks ago?
+
+Collin - I learned how to effectively build a big data pipeline using Databricks 
+
+Ta'Shawn - One thing I learned throughout this project, and am still working to better understand, is how to properly plan data partitioning. Determining the right partitioning strategy felt more like trial and error, and I’d like to learn more effective ways to plan this initially. 
+
+Josh – The biggest thing I learned was how to design a silver and gold layer, and how to effectively translate that into code. Up until this project I was uncertain on how to make a proper entity relationship diagram as it had been a little confusing on what data should be included and what should be removed at the different stages of the process. But being able to collaborate with others and get feedback on what was correct to have and what could be removed along with how to form tables that linked together to effectively solve our use cases. 
+
+
+What advice would we give to a team starting this project fresh? 
+
+Tailor your pipelines for event data 
+
+ 
